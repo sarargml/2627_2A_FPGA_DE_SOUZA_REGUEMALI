@@ -190,6 +190,13 @@ end architecture rtl;
 ```
 
 
+## Conclusion
+
+This first lab introduced the FPGA development workflow, from writing VHDL code and configuring a Quartus Prime project to assigning pins, compiling the design, and programming the board.
+
+We progressed from controlling an LED with a push button to generating a blinking signal and designing an eight-position LED chaser with adjustable speed.
+
+
 
 
 
