@@ -34,17 +34,3 @@ we have managed to invert the behaviour of the LED so that it is on by default a
 
 ## 2. Blinking an LED
 The clock named FPGA_CLK1_50 connected on **PIN_V11**
-
-*To be completed: circuit diagram, clock and reset roles, counter design, blinking frequency, and test results.*
-
-## 3. LED Chaser
-
-*To be completed: operating principle, VHDL code, circuit diagram, and validation on the board.*
-
-## Conclusion
-
-*To be written at the end of the lab: skills acquired, difficulties encountered, and solutions implemented.*
-
-## Reference
-
-[FPGA Lab Instructions](https://github.com/lfiack/ENSEA_2A_FPGA_Public/blob/main/mineure/3-tp/fpga_tp.md)
