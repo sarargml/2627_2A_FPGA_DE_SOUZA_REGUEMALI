@@ -188,6 +188,9 @@ begin
 	 
 end architecture rtl;
 ```
+Here is the RTL Viewer of the code 
+
+<img width="1532" height="605" alt="image" src="https://github.com/user-attachments/assets/9a28405a-aff7-49d8-9865-b186bfc4d5c0" />
 
 
 ## Conclusion
