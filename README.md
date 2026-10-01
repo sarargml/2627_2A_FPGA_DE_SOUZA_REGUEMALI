@@ -33,4 +33,7 @@ led <= not push;
 we have managed to invert the behaviour of the LED so that it is on by default and turns off when the encoder is pressed
 
 ## 2. Blinking an LED
+
 The clock named FPGA_CLK1_50 connected on **PIN_V11**
+
+After compiling the following which makes the LED blink
