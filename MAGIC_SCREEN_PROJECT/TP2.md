@@ -33,7 +33,7 @@ To be completed
 
 ### Simulation
 
-Status: not yet performed.
+
 
 | Planned test | Expected result | Observed result |
 | --- | --- | --- |
@@ -47,9 +47,7 @@ Include simulation waveforms and explain the significant transitions.
 
 ### Hardware Validation
 
-Status: not yet performed.
-
-To be completed: connections, LED observations, issues encountered, and corrections.
+To be completed
 
 ## 2. HDMI Controller
 
