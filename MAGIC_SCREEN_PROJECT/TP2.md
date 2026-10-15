@@ -25,11 +25,11 @@ Design a counter with a configurable bit width that increments or decrements acc
 
 ### Operating Principle and Circuit Diagram
 
-To be completed: operation of channels A and B, edge detection, counting conditions, and circuit diagram.
+To be completed
 
 ### VHDL Implementation
 
-To be completed: component interface, counter width, clock, reset, and behavior at the counter limits.
+To be completed
 
 ### Simulation
 
