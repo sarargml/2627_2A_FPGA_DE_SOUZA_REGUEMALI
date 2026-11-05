@@ -25,11 +25,46 @@ Design a counter with a configurable bit width that increments or decrements acc
 
 ### Operating Principle and Circuit Diagram
 
-To be completed
+The rotary encoder provides two digital signals, A and B, shifted in phase. Their transition order indicates the direction of rotation: A leads B in one direction, while B leads A in the opposite direction.
+
+Since these signals are asynchronous to the FPGA clock, each input first passes through a two-stage synchronizer. For a mechanical encoder, a debounce filter is also used to prevent contact bounce from producing unwanted counts.
+
+A simple decoding method consists of detecting each rising edge of signal A and reading the value of signal B at that instant. Depending on B, the decoder generates either an increment pulse or a decrement pulse. The association between the value of B and the direction can be reversed to match the encoder wiring.
+
+These pulses control an unsigned N-bit up/down counter, where N is configurable. The counter is updated on the rising edge of the FPGA clock:
+
+When reset is asserted, the counter is set to zero.
+
+When an increment pulse is generated, the counter increases by one.
+
+When a decrement pulse is generated, the counter decreases by one.
+
+Otherwise, the counter keeps its current value.
+
+For initial validation, N is set to 10 and the counter output is connected to the ten board LEDs, displaying its value in binary. With modulo counting, the value wraps from 1023 to 0 when incrementing and from 0 to 1023 when decrementing.
+
+```mermaid
+flowchart LR
+    E["Encodeur : A et B"] --> S["Synchronisation"]
+    S --> F["Filtrage anti-rebond"]
+    F --> D["Détection du sens"]
+    D --> C["Compteur"]
+    C --> L["LED"]
+    R["Reset"] --> C
+```
 
 ### VHDL Implementation
 
-To be completed
+
+The encoder interface is implemented using a configurable N-bit unsigned counter. The generic parameter N is set to 10 by default for validation with the board LEDs.
+
+The A and B inputs are synchronized with the FPGA clock using two flip-flops per channel. A register stores the previous synchronized value of A to detect its rising edges. On each detected rising edge, the counter increments when B is low and decrements when B is high. Reversing this convention reverses the counting direction.
+
+The reset input is active high and synchronous: the counter is cleared on the next rising clock edge. Arithmetic uses the `numeric_std` package. The counter wraps automatically at its limits, from the maximum value to zero and vice versa.
+
+This version includes input synchronization. A separate debounce stage is required if the mechanical encoder signals are not already filtered.
+
+** ADD CODE EXTRACT**
 
 ### Simulation
 
