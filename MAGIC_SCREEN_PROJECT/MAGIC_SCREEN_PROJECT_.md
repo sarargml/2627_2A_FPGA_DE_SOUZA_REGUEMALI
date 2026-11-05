@@ -4,10 +4,11 @@ Authors: DE SOUZA Luis Henrique
 REGUEMALI Sara
 
 
-## Objective
+## Objective and Project architecture
 
 Build a digital Etch A Sketch on the DE10-Nano board: two rotary encoders control the cursor position, a memory stores the drawing, and a button clears the screen.
 
+**AJOUTER SCHEMA**
 
 ## Progress
 
@@ -43,15 +44,9 @@ Otherwise, the counter keeps its current value.
 
 For initial validation, N is set to 10 and the counter output is connected to the ten board LEDs, displaying its value in binary. With modulo counting, the value wraps from 1023 to 0 when incrementing and from 0 to 1023 when decrementing.
 
-```mermaid
-flowchart LR
-    E["Encodeur : A et B"] --> S["Synchronisation"]
-    S --> F["Filtrage anti-rebond"]
-    F --> D["Détection du sens"]
-    D --> C["Compteur"]
-    C --> L["LED"]
-    R["Reset"] --> C
-```
+<img width="1342" height="925" alt="image" src="https://github.com/user-attachments/assets/1595a6ba-2947-4648-8155-7ab163991e59" />
+
+
 
 ### VHDL Implementation
 
@@ -64,7 +59,14 @@ The reset input is active high and synchronous: the counter is cleared on the ne
 
 This version includes input synchronization. A separate debounce stage is required if the mechanical encoder signals are not already filtered.
 
-** ADD CODE EXTRACT**
+<img width="653" height="411" alt="image" src="https://github.com/user-attachments/assets/bbd3d706-40a4-4ccf-8a9d-119688f0cb99" />
+
+<img width="475" height="320" alt="image" src="https://github.com/user-attachments/assets/35d3aa23-e00d-4a1c-b038-af29f6186aed" />
+
+<img width="718" height="466" alt="image" src="https://github.com/user-attachments/assets/08afde48-9bb9-443f-a34c-7d23c7a349a2" />
+
+
+
 
 ### Simulation
 
