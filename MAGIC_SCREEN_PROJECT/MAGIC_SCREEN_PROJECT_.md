@@ -57,7 +57,18 @@ The A and B inputs are synchronized with the FPGA clock using two flip-flops per
 
 The reset input is active high and synchronous: the counter is cleared on the next rising clock edge. Arithmetic uses the `numeric_std` package. The counter wraps automatically at its limits, from the maximum value to zero and vice versa.
 
-This version includes input synchronization. A separate debounce stage is required if the mechanical encoder signals are not already filtered.
+<img width="479" height="188" alt="image" src="https://github.com/user-attachments/assets/af200071-5656-4b14-a085-da4ee522a407" />
+
+The circuit uses two D flip-flops connected in series and driven by the same clock. At each rising clock edge, the first flip-flop samples input A, while the second stores the previous output of the first flip-flop.
+
+Let Q1 be the output of the first flip-flop and Q2 the output of the second. Comparing these two successive samples allows an edge to be detected:
+
+- **Rising edge:** Q1 = 1 and Q2 = 0, indicating a transition from 0 to 1. The detection logic is `E_rising = Q1 AND NOT Q2`.
+- **Falling edge:** Q1 = 0 and Q2 = 1, indicating a transition from 1 to 0. The detection logic is `E_falling = NOT Q1 AND Q2`.
+
+If Q1 and Q2 are equal, no transition is detected. Each detected edge generates a pulse lasting one clock period. Therefore, the block marked “???” implements an AND gate with one inverted input, chosen according to the edge to be detected.
+
+
 
 <img width="653" height="411" alt="image" src="https://github.com/user-attachments/assets/bbd3d706-40a4-4ccf-8a9d-119688f0cb99" />
 
@@ -74,17 +85,24 @@ This version includes input synchronization. A separate debounce stage is requir
 
 | Planned test | Expected result | Observed result |
 | --- | --- | --- |
-| Reset | Counter set to zero | To be completed |
-| Rotation in one direction | Counter increments | To be completed |
-| Rotation in the opposite direction | Counter decrements | To be completed |
-| Stationary encoder | Counter remains unchanged | To be completed |
-| Counting beyond the limits | According to the chosen boundary behavior | To be completed |
+| Reset | Counter set to zero | The counter initially displays 0, but reset activation is not shown in the provided waveforms.  |
+| Rotation in one direction | Counter increments | The counter changes from 0 to 1 following an increment pulse on o_inc. |
+| Rotation in the opposite direction | Counter decrements | The counter changes from 1 to 0 for the opposite input transition sequence. |
+| Stationary encoder | Counter remains unchanged | The counter remains stable between the observed counting events.|
 
-Include simulation waveforms and explain the significant transitions.
+
+<img width="712" height="172" alt="image" src="https://github.com/user-attachments/assets/7ba4465d-e7f0-4eb2-9fc0-39a43aca26c2" />
+
+<img width="1022" height="182" alt="image" src="https://github.com/user-attachments/assets/9cbf2a4d-c516-4287-b9e7-035f29a06e32" />
+
+
+
+
+
 
 ### Hardware Validation
 
-To be completed
+The encoder works effectively
 
 ## 2. HDMI Controller
 
