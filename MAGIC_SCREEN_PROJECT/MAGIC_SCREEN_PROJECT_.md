@@ -121,11 +121,51 @@ After adding the adapter in VLC and compiling the project, we obtain the followi
 
 ## 3. Moving a Pixel
 
-To be completed 
+At this stage of the project, we display a single pixel whose position is controlled by two encoders. The left encoder moves the pixel horizontally, and the right encoder moves it vertically.
+
+Only the relevant sections of telecran.vhd are show
+
+
+
+**INSERT CODE PHOTOS**
+
+
+The pixel is displayed as such:
+
+<img width="637" height="593" alt="image" src="https://github.com/user-attachments/assets/18bb5ebd-55c9-4405-8efc-4fa0a102a261" />
+
+
+
+We also chose to change colours for better visualisation:
+
+
+<img width="640" height="592" alt="image" src="https://github.com/user-attachments/assets/3f39acfb-d8da-432e-a097-60893946c2ce" />
+
+
 
 ## 4. Drawing Memory
 
-To be completed 
+The goal of this stage is to store the pixels visited by the cursor so that its path remains visible, just like on a real Etch A Sketch. We use a framebuffer to store the pixels that have already been lit. The file `dpram.vhd` provides the VHDL implementation of a dual-port RAM.
+
+Dual-port RAM (DPRAM, short for *dual-port random-access memory*) has two independent ports. In the implementation used here, both ports can read from memory, and one can also write to it. Each port has its own clock, address, and associated control signals. This allows two processes, such as updating the drawing and refreshing the display, to run concurrently.
+
+In our project, the DPRAM serves as a framebuffer, storing the pixels to be displayed on the screen.
+
+- **Port A** handles writes. It stores a white pixel at the cursor’s new position whenever the cursor moves. When the entire screen is cleared, it writes black pixels across the framebuffer.
+- **Port B** continuously reads the framebuffer to supply pixel data to the HDMI display.
+- **A multiplexer** selects whether port A receives the cursor’s pixel position and drawing data or the address and data used to clear the screen.
+
+This allows the HDMI display to refresh continuously while the user draws or clears the screen.
+
+
+
+<img width="597" height="845" alt="image" src="https://github.com/user-attachments/assets/73164655-c4a6-4473-a3ee-153d26725791" />
+
+
+
+
+
+
 
 ## 5. Clearing the Screen
 
