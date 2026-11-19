@@ -177,11 +177,17 @@ We have managed to do the memorisation and the obtain resulted is shown below:
 
 ## 5. Clearing the Screen
 
-To be completed 
+When the user presses the clear button, an address counter steps through the framebuffer and writes a `0` to each address, turning every stored pixel black. During this operation, a multiplexer routes the counter address and the value `0` to the RAM’s write port. The HDMI controller continues reading from the other port, so the display keeps refreshing. Once the last address has been cleared, the write port switches back to the cursor so the user can draw again.
+
+<img width="475" height="581" alt="image" src="https://github.com/user-attachments/assets/7d9054c7-0f4b-40c9-955d-de17e9d1387c" />
+
+
+This process controls screen clearing. It synchronizes the left encoder button with the 27 MHz clock and detects when the button is pressed. At startup or after a button press, it sets `r_clearing` and starts at framebuffer address `0`. The address advances on each clock cycle so the write logic can set each pixel to black. After the last address is reached, the process ends clearing and normal drawing resumes.
+
 
 ## Conclusion
 
-To be completed
+In this project, we developed a digital Etch A Sketch on the DE10-Nano using VHDL. We first tested the rotary encoder counter in simulation and on the board, then integrated two encoders to control the horizontal and vertical positions of a cursor displayed over HDMI. Adding a dual-port RAM as a framebuffer allowed us to store the pixels visited by the cursor so that its path remained visible as it moved. The two memory ports allow the HDMI controller to refresh the display while the drawing is updated. The final step is to validate the screen-clearing function on the board by checking that pressing the button clears the entire framebuffer and that drawing can resume afterward.
 
 
 
