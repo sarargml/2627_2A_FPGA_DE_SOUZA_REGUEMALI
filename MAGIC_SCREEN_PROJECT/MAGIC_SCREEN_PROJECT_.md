@@ -106,33 +106,18 @@ The encoder works effectively
 
 ## 2. HDMI Controller
 
-The diagram uses two D flip-flops connected in series and driven by the same clock CLK. At each rising edge of CLK:
+This part of the project involves implementing the HDMI controller designed during the tutorial session. We add the `hdmi_controler.vhd` file to the project and connect the pixel coordinate outputs to the `x` and `y` counters. We then instantiate the `hdmi_controler` component in the top-level file, `telecran.vhd`.
 
-- The first flip-flop samples input "A", producing "Acourant".
-- The second flip-flop stores the previous value of the first, producing "Aprev".
-
-Comparing these two values detects a transition:
-
-| Aprev | Acourant | Interpretation |
-|---|---|---|
-| 0 | 0 | No change |
-| 0 | 1 | Rising edge |
-| 1 | 0 | Falling edge |
-| 1 | 1 | No change |
-
-A rising edge is detected when the current sample is high and the previous sample is low:
+<img width="787" height="402" alt="image" src="https://github.com/user-attachments/assets/ae9c0233-05c9-43e9-a459-5ba068ec2ec2" />
 
 
-E_rising = Acourant AND NOT Aprev
 
+In the configuration shown above, each color channel (red, green, and blue, or RGB) is encoded using 8 bits. 
 
-A falling edge is detected when the current sample is low and the previous sample is high:
+After adding the adapter in VLC and compiling the project, we obtain the following result:
 
+<img width="646" height="591" alt="image" src="https://github.com/user-attachments/assets/58561fd6-5b4f-4080-968a-2ba87faba1e2" />
 
-E_falling = NOT Acourant AND Aprev
-
-
-The block marked "???" therefore contains an AND gate and an inverter, connected according to the desired edge. Each detected transition generates a pulse lasting one clock period.
 
 ## 3. Moving a Pixel
 
