@@ -8,7 +8,7 @@ REGUEMALI Sara
 
 Build a digital Etch A Sketch on the DE10-Nano board: two rotary encoders control the cursor position, a memory stores the drawing, and a button clears the screen.
 
-**AJOUTER SCHEMA**
+
 
 ## Progress
 
