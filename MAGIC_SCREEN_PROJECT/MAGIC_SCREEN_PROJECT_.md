@@ -127,7 +127,8 @@ Only the relevant sections of telecran.vhd are show
 
 
 
-**INSERT CODE PHOTOS**
+<img width="1022" height="166" alt="image" src="https://github.com/user-attachments/assets/53ae6a55-d0a6-45e5-9e84-3e148511df5f" />
+
 
 
 The pixel is displayed as such:
