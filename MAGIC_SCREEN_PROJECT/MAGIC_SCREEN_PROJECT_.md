@@ -162,6 +162,13 @@ This allows the HDMI display to refresh continuously while the user draws or cle
 
 <img width="597" height="845" alt="image" src="https://github.com/user-attachments/assets/73164655-c4a6-4473-a3ee-153d26725791" />
 
+We have managed to do the memorisation and the obtain resulted is shown below:
+
+
+<img width="1226" height="917" alt="image" src="https://github.com/user-attachments/assets/76bcb826-713c-4816-b022-c1d4c856b9c2" />
+
+<img width="823" height="877" alt="image" src="https://github.com/user-attachments/assets/6a93a91c-f5fd-426b-a84f-3f1e4d1e9874" />
+
 
 
 
